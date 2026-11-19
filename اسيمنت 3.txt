@@ -1,0 +1,240 @@
+Q1
+
+int getMin(List<int> arr) {
+  int min = arr[0];
+  for (int i = 1; i < arr.length; i++) {
+    if (arr[i] < min) {
+      min = arr[i];
+    }
+  }
+  return min;
+}
+
+void main() {
+  List<int> arr = [5, 3, 8, 1, 9, 2];
+  print("min = ${getMin(arr)}");
+}
+
+
+Q2
+
+int getSecondSmallest(List<int> arr) {
+  int first = arr[0];
+  for (int i = 1; i < arr.length; i++) {
+    if (arr[i] < first) {
+      first = arr[i];
+    }
+  }
+  int second = 999999;
+  for (int i = 0; i < arr.length; i++) {
+    if (arr[i] > first && arr[i] < second) {
+      second = arr[i];
+    }
+  }
+  return second;
+}
+
+void main() {
+  List<int> arr = [5, 3, 8, 1, 9, 2];
+  print("second smallest = ${getSecondSmallest(arr)}");
+}
+
+
+Q3
+
+void containsValue(List<int> arr, int target) {
+  bool found = false;
+  for (int i = 0; i < arr.length; i++) {
+    if (arr[i] == target) {
+      found = true;
+    }
+  }
+  if (found) {
+    print("Yes");
+  } else {
+    print("No");
+  }
+}
+
+void main() {
+  List<int> arr = [5, 3, 8, 1, 9, 2];
+  containsValue(arr, 8);
+  containsValue(arr, 7);
+}
+
+
+Q4
+
+int CalculateEven(List<int> arr) {
+  int sum = 0;
+  for (int i = 0; i < arr.length; i++) {
+    if (arr[i] % 2 == 0) {
+      sum = sum + arr[i];
+    }
+  }
+  return sum;
+}
+
+void main() {
+  List<int> arr = [1, 2, 3, 4, 5, 6];
+  print("sum of even = ${CalculateEven(arr)}");
+}
+
+
+Q5
+
+void assignGrades(List<int> scores) {
+  int best = scores[0];
+  for (int i = 1; i < scores.length; i++) {
+    if (scores[i] > best) {
+      best = scores[i];
+    }
+  }
+  for (int i = 0; i < scores.length; i++) {
+    String grade;
+    if (scores[i] >= best - 10) {
+      grade = "A";
+    } else if (scores[i] >= best - 20) {
+      grade = "B";
+    } else if (scores[i] >= best - 30) {
+      grade = "C";
+    } else if (scores[i] >= best - 40) {
+      grade = "D";
+    } else {
+      grade = "F";
+    }
+    print("student ${i + 1} score is ${scores[i]} and grade is $grade");
+  }
+}
+
+void main() {
+  List<int> scores = [40, 55, 70, 58, 95, 30];
+  assignGrades(scores);
+}
+
+
+Q6
+
+void analyzeScores(List<int> scores) {
+  int sum = 0;
+  for (int i = 0; i < scores.length; i++) {
+    sum = sum + scores[i];
+  }
+  double avg = sum / scores.length;
+  int above = 0;
+  int below = 0;
+  for (int i = 0; i < scores.length; i++) {
+    if (scores[i] >= avg) {
+      above++;
+    } else {
+      below++;
+    }
+  }
+  print("average = $avg");
+  print("above or equal average = $above");
+  print("below average = $below");
+}
+
+void main() {
+  List<int> scores = [40, 55, 70, 58, 95, 30];
+  analyzeScores(scores);
+}
+
+
+Q7
+
+void reverseArray(List<int> arr) {
+  for (int i = arr.length - 1; i >= 0; i--) {
+    print(arr[i]);
+  }
+}
+
+void main() {
+  List<int> arr = [1, 2, 3, 4, 5];
+  reverseArray(arr);
+}
+
+
+Q8
+
+import 'dart:io';
+
+void getDistinctNumbers(List<int> arr) {
+  List<int> distinct = [];
+  for (int i = 0; i < arr.length; i++) {
+    bool found = false;
+    for (int j = 0; j < distinct.length; j++) {
+      if (arr[i] == distinct[j]) {
+        found = true;
+      }
+    }
+    if (found == false) {
+      distinct.add(arr[i]);
+    }
+  }
+  print("number of distinct numbers = ${distinct.length}");
+  for (int i = 0; i < distinct.length; i++) {
+    stdout.write("${distinct[i]} ");
+  }
+  print("");
+}
+
+void main() {
+  List<int> arr = [1, 2, 3, 2, 1, 6, 3, 4, 5, 2];
+  getDistinctNumbers(arr);
+}
+
+
+Q9
+
+void CountGeneral(List<int> arr) {
+  List<int> distinct = [];
+  for (int i = 0; i < arr.length; i++) {
+    bool found = false;
+    for (int j = 0; j < distinct.length; j++) {
+      if (arr[i] == distinct[j]) {
+        found = true;
+      }
+    }
+    if (found == false) {
+      distinct.add(arr[i]);
+    }
+  }
+  for (int i = 0; i < distinct.length; i++) {
+    int count = 0;
+    for (int j = 0; j < arr.length; j++) {
+      if (arr[j] == distinct[i]) {
+        count++;
+      }
+    }
+    print("${distinct[i]} occurs $count times");
+  }
+}
+
+void main() {
+  List<int> arr = [1, 2, 3, 2, 1, 6, 3, 4, 5, 2];
+  CountGeneral(arr);
+}
+
+
+Q10
+
+void SelectionSort(List<int> arr) {
+  for (int i = 0; i < arr.length - 1; i++) {
+    int minIndex = i;
+    for (int j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[minIndex]) {
+        minIndex = j;
+      }
+    }
+    int temp = arr[i];
+    arr[i] = arr[minIndex];
+    arr[minIndex] = temp;
+  }
+}
+
+void main() {
+  List<int> arr = [64, 25, 12, 22, 11];
+  SelectionSort(arr);
+  print(arr);
+}
